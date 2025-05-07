@@ -21,35 +21,35 @@
 /* Colors Start */
 :root {
     --bg-color: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 1) 100%);
-    --nav-color: rgb(255, 255, 255, 0);
-    --side-nav: #e5e5e5;
-    --text-color: #1a1a1a;
-    --about-text-color: #1a1a1a;
-    --about-bg-color: #e5e5e5;
-    --services-text-color: #1a1a1a;
-    --services-bg-color: #e5e5e5;
-    --projects-text-color: #1a1a1a;
-    --projects-bg-color: #e5e5e5;
-    --hero-text-color: #e5e5e5;
-    --contact-text-color: #1a1a1a;
-    --contact-bg-color: #e5e5e5;
+    --nav-color: #fff;
+    --side-nav: #fff;
+    --text-color: #000;
+    --about-text-color: #000;
+    --about-bg-color: #fff;
+    --services-text-color: #000;
+    --services-bg-color: #fff;
+    --projects-text-color: #000;
+    --projects-bg-color: #fff;
+    --hero-text-color: #fff;
+    --contact-text-color: #000;
+    --contact-bg-color: #fff;
 }
 
 body.dark {
     --bg-color: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(255, 255, 255, 1) 100%);
-    --nav-color: rgb(0, 0, 0, 0);
-    --side-nav: #1a1a1a;
-    --text-color: #e5e5e5;
-    --primary-color: #1a1a1a;
-    --about-text-color: #e5e5e5;
-    --about-bg-color: #1a1a1a;
-    --services-text-color: #e5e5e5;
-    --services-bg-color: #1a1a1a;
-    --projects-text-color: #e5e5e5;
-    --projects-bg-color: #1a1a1a;
-    --hero-text-color: #1a1a1a;
-    --contact-text-color: #e5e5e5;
-    --contact-bg-color: #1a1a1a;
+    --nav-color: #000;
+    --side-nav: #000;
+    --text-color: #fff;
+    --primary-color: #000;
+    --about-text-color: #fff;
+    --about-bg-color: #000;
+    --services-text-color: #fff;
+    --services-bg-color: #000;
+    --projects-text-color: #fff;
+    --projects-bg-color: #000;
+    --hero-text-color: #000;
+    --contact-text-color: #fff;
+    --contact-bg-color: #000;
 }
 /* Colors End */
 
@@ -89,6 +89,10 @@ nav .nav-bar .logo a {
     font-weight: 500;
     color: var(--text-color);
     text-decoration: none;
+}
+
+nav .nav-bar .logo a:hover {    
+    color: rgb(128, 128, 128);
 }
 
 .menu .logo-toggle {
@@ -204,6 +208,10 @@ nav .nav-bar .logo a {
     z-index: 999;
 }
 
+.language i:hover {
+    color: rgb(128, 128, 128);
+}
+
 .language-dropdown button {
     background: none;
     border: none;
@@ -227,6 +235,10 @@ nav .nav-bar .logo a {
     pointer-events: none;
 }
 
+.dark-light i.sun:hover {
+    color: rgb(128, 128, 128);
+}
+
 .dark-light.active i.sun {
     opacity: 1;
     pointer-events: auto;
@@ -237,6 +249,9 @@ nav .nav-bar .logo a {
     pointer-events: none;
 }
 
+.dark-light i.moon:hover {
+    color: rgb(128, 128, 128);
+}
 
 @media (max-width: 790px) {
     nav .nav-bar .sidebarOpen {

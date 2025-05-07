@@ -2,27 +2,24 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router';
 
 export default function Header() {
+    const getInitialMode = () => localStorage.getItem('mode') === 'dark-mode';
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(getInitialMode);
     const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
     const location = useLocation();
 
     useEffect(() => {
-        const mode = localStorage.getItem('mode');
-        if (mode === 'dark-mode') {
-            setIsDarkMode(true);
-            document.body.classList.add('dark');
-        }
-    }, []);
+        document.body.classList.toggle('dark', isDarkMode);
+    }, [isDarkMode]);
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
     const toggleDarkMode = () => {
-        setIsDarkMode(!isDarkMode);
-        document.body.classList.toggle('dark', !isDarkMode);
-        localStorage.setItem(isDarkMode ? 'light-mode' : 'dark-mode', isDarkMode ? 'light-mode' : 'dark-mode');
+        const newMode = !isDarkMode;
+        setIsDarkMode(newMode);
+        localStorage.setItem('mode', newMode ? 'dark-mode' : 'light-mode');
     };
 
     const toggleLangDropdown = () => {
@@ -69,9 +66,9 @@ export default function Header() {
                 </div>
 
                 <div className="darkLight-language">
-                    <div className="dark-light" onClick={toggleDarkMode}>
-                        <i className={`bx bx-moon moon ${isDarkMode ? 'active' : ''}`}></i>
-                        <i className={`bx bx-sun sun ${isDarkMode ? '' : 'active'}`}></i>
+                    <div className={`dark-light ${isDarkMode ? 'active' : ''}`} onClick={toggleDarkMode}>
+                        <i className="bx bx-moon moon"></i>
+                        <i className="bx bx-sun sun"></i>
                     </div>
 
                     <div className="language">
@@ -86,3 +83,4 @@ export default function Header() {
         </nav>
     );
 }
+
