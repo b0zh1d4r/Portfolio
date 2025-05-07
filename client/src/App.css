@@ -91,10 +91,6 @@ nav .nav-bar .logo a {
     text-decoration: none;
 }
 
-nav .nav-bar .logo a:hover {    
-    color: rgb(128, 128, 128);
-}
-
 .menu .logo-toggle {
     display: none;
 }
@@ -208,10 +204,6 @@ nav .nav-bar .logo a:hover {
     z-index: 999;
 }
 
-.language i:hover {
-    color: rgb(128, 128, 128);
-}
-
 .language-dropdown button {
     background: none;
     border: none;
@@ -235,10 +227,6 @@ nav .nav-bar .logo a:hover {
     pointer-events: none;
 }
 
-.dark-light i.sun:hover {
-    color: rgb(128, 128, 128);
-}
-
 .dark-light.active i.sun {
     opacity: 1;
     pointer-events: auto;
@@ -249,11 +237,25 @@ nav .nav-bar .logo a:hover {
     pointer-events: none;
 }
 
-.dark-light i.moon:hover {
-    color: rgb(128, 128, 128);
+@media (min-width: 1025px) {
+    nav .nav-bar .logo a:hover {    
+        color: rgb(128, 128, 128);
+    }
+    
+    .language i:hover {
+        color: rgb(128, 128, 128);
+    }
+    
+    .dark-light i.sun:hover {
+        color: rgb(128, 128, 128);
+    }
+    
+    .dark-light i.moon:hover {
+        color: rgb(128, 128, 128);
+    }
 }
 
-@media (max-width: 790px) {
+@media (max-width: 1024px) {
     nav .nav-bar .sidebarOpen {
         display: block;
     }
@@ -337,7 +339,7 @@ nav .nav-bar .logo a:hover {
     text-shadow: 2px 2px 10px rgb(128, 128, 128);
 }
 
-@media (max-width: 790px) {
+@media (max-width: 1024px) {
     .hero {
         scale: 90%;
     }
@@ -364,7 +366,7 @@ nav .nav-bar .logo a:hover {
     margin-bottom: 15px;
 }
 
-@media (max-width: 790px) {
+@media (max-width: 1024px) {
     .about {
         margin-top: 80px;
         scale: 90%;
@@ -392,7 +394,7 @@ nav .nav-bar .logo a:hover {
     margin-bottom: 15px;
 }
 
-@media (max-width: 790px) {
+@media (max-width: 1024px) {
     .services {
         margin-top: 80px;
         scale: 90%;
@@ -424,12 +426,14 @@ nav .nav-bar .logo a:hover {
     color: var(--projects-text-color);
 }
 
-.projects a:hover {
-    color: rgb(128, 128, 128);
-    transition: 0.3s ease;
+@media (min-width: 1025px) {
+    .projects a:hover {
+        color: rgb(128, 128, 128);
+        transition: 0.3s ease;
+    }
 }
 
-@media (max-width: 790px) {
+@media (max-width: 1024px) {
     .projects {
         margin-top: 80px;
         scale: 90%;
@@ -486,14 +490,16 @@ nav .nav-bar .logo a:hover {
     font-size: 20px;
 }
 
-.links li a i:hover {
-    color: rgb(128, 128, 128);
-    border-color: rgb(128, 128, 128);
-    font-size: 23px;
-    transition: 0.3s ease;
+@media (min-width: 1025px) {
+    .links li a i:hover {
+        color: rgb(128, 128, 128);
+        border-color: rgb(128, 128, 128);
+        font-size: 23px;
+        transition: 0.3s ease;
+    }
 }
 
-@media (max-width: 790px) {
+@media (max-width: 1024px) {
     .contact {
         margin-top: 80px;
         scale: 90%;
