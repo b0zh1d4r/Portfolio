@@ -61,10 +61,10 @@ export default function Header() {
 
                     <ul className="nav-links">
                         <li><Link to="/" onClick={handleLinkClick} className={location.pathname === "/" ? "active" : ""}>Home</Link></li>
-                        <li><Link to="/about" onClick={handleLinkClick}>About</Link></li>
-                        <li><Link to="/services" onClick={handleLinkClick}>Services</Link></li>
-                        <li><Link to="/projects" onClick={handleLinkClick}>Projects</Link></li>
-                        <li><Link to="/contact" onClick={handleLinkClick}>Contact</Link></li>
+                        <li><Link to="/about" onClick={handleLinkClick} className={location.pathname === "/about" ? "active" : ""}>About</Link></li>
+                        <li><Link to="/services" onClick={handleLinkClick} className={location.pathname === "/services" ? "active" : ""}>Services</Link></li>
+                        <li><Link to="/projects" onClick={handleLinkClick} className={location.pathname === "/projects" ? "active" : ""}>Projects</Link></li>
+                        <li><Link to="/contact" onClick={handleLinkClick} className={location.pathname === "/contact" ? "active" : ""}>Contact</Link></li>
                     </ul>
                 </div>
 
