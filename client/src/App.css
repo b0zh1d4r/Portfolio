@@ -189,6 +189,10 @@ nav .nav-bar .logo a {
     transition: all 0.3s ease;
 }
 
+.bg-bold {
+    font-weight: 550;
+}
+
 .language-dropdown {
     position: absolute;
     top: 50px;
@@ -432,6 +436,7 @@ nav .nav-bar .logo a {
 
 .projects a {
     color: var(--projects-text-color);
+    font-weight: 550;
 }
 
 @media (min-width: 1025px) {

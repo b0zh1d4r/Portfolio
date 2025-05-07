@@ -13,7 +13,13 @@ export default function Header() {
 
     const location = useLocation();
     const { t, i18n } = useTranslation();
+    const isBulgarian = i18n.language === 'bg';
 
+    const renderLinkText = (key) => {
+        const text = t(key);
+        return isBulgarian ? <span className="bg-bold">{text}</span> : text;
+    };
+    
     useEffect(() => {
         document.body.classList.toggle('dark', isDarkMode);
     }, [isDarkMode]);
@@ -63,21 +69,21 @@ export default function Header() {
                 <i className="bx bx-menu sidebarOpen" onClick={toggleSidebar}></i>
 
                 <span className="logo navLogo">
-                    <Link to="/">{t('name')}</Link>
+                    <Link to="/">{renderLinkText('name')}</Link>
                 </span>
 
                 <div className="menu">
                     <div className="logo-toggle">
-                        <span className="logo"><Link to="/">{t('name')}.</Link></span>
+                        <span className="logo"><Link to="/">{renderLinkText('name')}.</Link></span>
                         <i className="bx bx-x sidebarClose" onClick={toggleSidebar}></i>
                     </div>
 
                     <ul className="nav-links">
-                        <li><Link to="/" onClick={handleLinkClick} className={location.pathname === "/" ? "active" : ""}>{t('home')}</Link></li>
-                        <li><Link to="/about" onClick={handleLinkClick} className={location.pathname === "/about" ? "active" : ""}>{t('about')}</Link></li>
-                        <li><Link to="/services" onClick={handleLinkClick} className={location.pathname === "/services" ? "active" : ""}>{t('services')}</Link></li>
-                        <li><Link to="/projects" onClick={handleLinkClick} className={location.pathname === "/projects" ? "active" : ""}>{t('projects')}</Link></li>
-                        <li><Link to="/contact" onClick={handleLinkClick} className={location.pathname === "/contact" ? "active" : ""}>{t('contact')}</Link></li>
+                        <li><Link to="/" onClick={handleLinkClick} className={location.pathname === "/" ? "active" : ""}>{renderLinkText('home')}</Link></li>
+                        <li><Link to="/about" onClick={handleLinkClick} className={location.pathname === "/about" ? "active" : ""}>{renderLinkText('about')}</Link></li>
+                        <li><Link to="/services" onClick={handleLinkClick} className={location.pathname === "/services" ? "active" : ""}>{renderLinkText('services')}</Link></li>
+                        <li><Link to="/projects" onClick={handleLinkClick} className={location.pathname === "/projects" ? "active" : ""}>{renderLinkText('projects')}</Link></li>
+                        <li><Link to="/contact" onClick={handleLinkClick} className={location.pathname === "/contact" ? "active" : ""}>{renderLinkText('contact')}</Link></li>
                     </ul>
                 </div>
 
