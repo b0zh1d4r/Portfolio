@@ -1,41 +1,88 @@
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router';
+
 export default function Header() {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
+    const location = useLocation();
+
+    useEffect(() => {
+        const mode = localStorage.getItem('mode');
+        if (mode === 'dark-mode') {
+            setIsDarkMode(true);
+            document.body.classList.add('dark');
+        }
+    }, []);
+
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+
+    const toggleDarkMode = () => {
+        setIsDarkMode(!isDarkMode);
+        document.body.classList.toggle('dark', !isDarkMode);
+        localStorage.setItem(isDarkMode ? 'light-mode' : 'dark-mode', isDarkMode ? 'light-mode' : 'dark-mode');
+    };
+
+    const toggleLangDropdown = () => {
+        setIsLangDropdownOpen(!isLangDropdownOpen);
+    };
+
+    const closeLangDropdown = (e) => {
+        if (!e.target.closest('.language')) {
+            setIsLangDropdownOpen(false);
+        }
+    };
+
+    const handleLinkClick = () => {
+        setIsSidebarOpen(false);
+    };
+
+    useEffect(() => {
+        document.addEventListener('click', closeLangDropdown);
+        return () => document.removeEventListener('click', closeLangDropdown);
+    }, []);
+
     return (
-        <>
-            <nav>
-                <div class="nav-bar">
-                    <i class='bx bx-menu sidebarOpen' ></i>
-                    <span class="logo navLogo"><a href="/">Bozhidar.</a></span>
+        <nav className={isSidebarOpen ? 'active' : ''}>
+            <div className="nav-bar">
+                <i className="bx bx-menu sidebarOpen" onClick={toggleSidebar}></i>
 
-                    <div class="menu">
-                        <div class="logo-toggle">
-                            <span class="logo"><a href="/">Bozhidar.</a></span>
-                            <i class='bx bx-x sidebarClose'></i>
-                        </div>
+                <span className="logo navLogo">
+                    <Link to="/">Bozhidar.</Link>
+                </span>
 
-                        <ul class="nav-links">
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/about.html">About</a></li>
-                            <li><a href="/services.html">Services</a></li>
-                            <li><a href="/projects.html">Projects</a></li>
-                            <li><a href="/contact.html">Contact</a></li>
-                        </ul>
+                <div className="menu">
+                    <div className="logo-toggle">
+                        <span className="logo"><Link to="/">Bozhidar.</Link></span>
+                        <i className="bx bx-x sidebarClose" onClick={toggleSidebar}></i>
                     </div>
 
-                    <div class="darkLight-language">
-                        <div class="dark-light">
-                            <i class='bx bx-moon moon'></i>
-                            <i class='bx bx-sun sun'></i>
-                        </div>
-                        <div class="language">
-                            <i class="fa-solid fa-language"></i>
-                            <div class="language-dropdown hidden">
-                                <button id="lang-en">English</button>
-                                <button id="lang-bg">Български</button>
-                            </div>
+                    <ul className="nav-links">
+                        <li><Link to="/" onClick={handleLinkClick} className={location.pathname === "/" ? "active" : ""}>Home</Link></li>
+                        <li><Link to="/about" onClick={handleLinkClick}>About</Link></li>
+                        <li><Link to="/services" onClick={handleLinkClick}>Services</Link></li>
+                        <li><Link to="/projects" onClick={handleLinkClick}>Projects</Link></li>
+                        <li><Link to="/contact" onClick={handleLinkClick}>Contact</Link></li>
+                    </ul>
+                </div>
+
+                <div className="darkLight-language">
+                    <div className="dark-light" onClick={toggleDarkMode}>
+                        <i className={`bx bx-moon moon ${isDarkMode ? 'active' : ''}`}></i>
+                        <i className={`bx bx-sun sun ${isDarkMode ? '' : 'active'}`}></i>
+                    </div>
+
+                    <div className="language">
+                        <i className="fa-solid fa-language" onClick={toggleLangDropdown}></i>
+                        <div className={`language-dropdown ${isLangDropdownOpen ? '' : 'hidden'}`}>
+                            <button id="lang-en" onClick={() => setIsLangDropdownOpen(false)}>English</button>
+                            <button id="lang-bg" onClick={() => setIsLangDropdownOpen(false)}>Български</button>
                         </div>
                     </div>
                 </div>
-            </nav>
-        </>
-    )
+            </div>
+        </nav>
+    );
 }
