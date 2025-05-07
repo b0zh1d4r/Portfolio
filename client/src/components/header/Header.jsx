@@ -1,16 +1,32 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 export default function Header() {
     const getInitialMode = () => localStorage.getItem('mode') === 'dark-mode';
+    const getInitialLang = () => localStorage.getItem('language') || 'en';
+
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(getInitialMode);
     const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
+    const [selectedLang, setSelectedLang] = useState(getInitialLang);
+
     const location = useLocation();
+    const { t, i18n } = useTranslation();
 
     useEffect(() => {
         document.body.classList.toggle('dark', isDarkMode);
     }, [isDarkMode]);
+
+    useEffect(() => {
+        i18n.changeLanguage(selectedLang);
+        localStorage.setItem('language', selectedLang);
+    }, [selectedLang, i18n]);
+
+    const changeLanguage = (lang) => {
+        setSelectedLang(lang);
+        setIsLangDropdownOpen(false);
+    };
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
@@ -47,21 +63,21 @@ export default function Header() {
                 <i className="bx bx-menu sidebarOpen" onClick={toggleSidebar}></i>
 
                 <span className="logo navLogo">
-                    <Link to="/">Bozhidar.</Link>
+                    <Link to="/">{t('name')}</Link>
                 </span>
 
                 <div className="menu">
                     <div className="logo-toggle">
-                        <span className="logo"><Link to="/">Bozhidar.</Link></span>
+                        <span className="logo"><Link to="/">{t('name')}.</Link></span>
                         <i className="bx bx-x sidebarClose" onClick={toggleSidebar}></i>
                     </div>
 
                     <ul className="nav-links">
-                        <li><Link to="/" onClick={handleLinkClick} className={location.pathname === "/" ? "active" : ""}>Home</Link></li>
-                        <li><Link to="/about" onClick={handleLinkClick} className={location.pathname === "/about" ? "active" : ""}>About</Link></li>
-                        <li><Link to="/services" onClick={handleLinkClick} className={location.pathname === "/services" ? "active" : ""}>Services</Link></li>
-                        <li><Link to="/projects" onClick={handleLinkClick} className={location.pathname === "/projects" ? "active" : ""}>Projects</Link></li>
-                        <li><Link to="/contact" onClick={handleLinkClick} className={location.pathname === "/contact" ? "active" : ""}>Contact</Link></li>
+                        <li><Link to="/" onClick={handleLinkClick} className={location.pathname === "/" ? "active" : ""}>{t('home')}</Link></li>
+                        <li><Link to="/about" onClick={handleLinkClick} className={location.pathname === "/about" ? "active" : ""}>{t('about')}</Link></li>
+                        <li><Link to="/services" onClick={handleLinkClick} className={location.pathname === "/services" ? "active" : ""}>{t('services')}</Link></li>
+                        <li><Link to="/projects" onClick={handleLinkClick} className={location.pathname === "/projects" ? "active" : ""}>{t('projects')}</Link></li>
+                        <li><Link to="/contact" onClick={handleLinkClick} className={location.pathname === "/contact" ? "active" : ""}>{t('contact')}</Link></li>
                     </ul>
                 </div>
 
@@ -74,8 +90,20 @@ export default function Header() {
                     <div className="language">
                         <i className="fa-solid fa-language" onClick={toggleLangDropdown}></i>
                         <div className={`language-dropdown ${isLangDropdownOpen ? '' : 'hidden'}`}>
-                            <button id="lang-en" onClick={() => setIsLangDropdownOpen(false)}>English</button>
-                            <button id="lang-bg" onClick={() => setIsLangDropdownOpen(false)}>Български</button>
+                            <button
+                                id="lang-en"
+                                onClick={() => changeLanguage('en')}
+                                className={selectedLang === 'en' ? 'active' : ''}
+                            >
+                                English
+                            </button>
+                            <button
+                                id="lang-bg"
+                                onClick={() => changeLanguage('bg')}
+                                className={selectedLang === 'bg' ? 'active' : ''}
+                            >
+                                Български
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -83,4 +111,3 @@ export default function Header() {
         </nav>
     );
 }
-

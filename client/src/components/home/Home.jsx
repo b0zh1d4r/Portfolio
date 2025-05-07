@@ -1,4 +1,8 @@
+import { useTranslation } from 'react-i18next';
+
 export default function Home() {
+    const { t } = useTranslation();
+
     return (
         <>
             <div className="image">
@@ -6,8 +10,8 @@ export default function Home() {
             </div>
 
             <section className="hero">
-                <h1>Hi, I'm Bozhidar!</h1>
-                <p>It's nice to meet you! :)</p>
+                <h1>{t('heroH1')}</h1>
+                <p>{t('heroP')}</p>
             </section>
         </>
     )

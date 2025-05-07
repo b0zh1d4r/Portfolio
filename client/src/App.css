@@ -214,7 +214,15 @@ nav .nav-bar .logo a {
     text-align: left;
 }
 
+.bold-font {
+    font-weight: bold;
+}
+
 .language-dropdown button:hover {
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+.language-dropdown button.active {
     background-color: rgba(128, 128, 128, 0.5);
 }
 
