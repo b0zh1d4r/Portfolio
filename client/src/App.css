@@ -520,7 +520,6 @@ nav .nav-bar .logo a {
     .links li a i:hover {
         color: rgb(128, 128, 128);
         border-color: rgb(128, 128, 128);
-        font-size: 23px;
         transition: 0.3s ease;
     }
 }
