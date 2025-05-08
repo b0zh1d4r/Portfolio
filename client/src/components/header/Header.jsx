@@ -3,7 +3,13 @@ import { Link, useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
 export default function Header() {
-    const getInitialMode = () => localStorage.getItem('mode') === 'dark-mode';
+    const getInitialMode = () => {
+        const savedMode = localStorage.getItem('mode');
+        if (savedMode) return savedMode === 'dark-mode';
+        localStorage.setItem('mode', 'light-mode');
+        return false;
+    }; 
+
     const getInitialLang = () => localStorage.getItem('language') || 'en';
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -19,7 +25,7 @@ export default function Header() {
         const text = t(key);
         return isBulgarian ? <span className="bg-bold">{text}</span> : text;
     };
-    
+
     useEffect(() => {
         document.body.classList.toggle('dark', isDarkMode);
     }, [isDarkMode]);

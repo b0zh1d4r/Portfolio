@@ -16,6 +16,7 @@
         opacity: 1;
     }
 }
+
 /* Fade Animation End */
 
 /* Colors Start */
@@ -51,6 +52,7 @@ body.dark {
     --contact-text-color: #fff;
     --contact-bg-color: #000;
 }
+
 /* Colors End */
 
 /* Navigation Bar Start */
@@ -250,20 +252,26 @@ nav .nav-bar .logo a {
 }
 
 @media (min-width: 1025px) {
-    nav .nav-bar .logo a:hover {    
+    nav .nav-bar .logo a:hover {
         color: rgb(128, 128, 128);
     }
-    
+
     .language i:hover {
         color: rgb(128, 128, 128);
     }
-    
+
     .dark-light i.sun:hover {
         color: rgb(128, 128, 128);
     }
-    
+
     .dark-light i.moon:hover {
         color: rgb(128, 128, 128);
+    }
+
+    nav .nav-bar .logo a:hover, .language i:hover,
+    .dark-light i.sun:hover, .dark-light i.moon:hover {
+        color: rgb(128, 128, 128);
+        transition: 0.3s ease-out;
     }
 }
 
@@ -318,6 +326,7 @@ nav .nav-bar .logo a {
         margin-top: 20px;
     }
 }
+
 /* Navigation Bar End */
 
 /* Home Page Start */
@@ -356,6 +365,7 @@ nav .nav-bar .logo a {
         scale: 90%;
     }
 }
+
 /* Home Page End */
 
 /* About Start */
@@ -384,6 +394,7 @@ nav .nav-bar .logo a {
         scale: 90%;
     }
 }
+
 /* About End */
 
 /* Services Start */
@@ -412,6 +423,7 @@ nav .nav-bar .logo a {
         scale: 90%;
     }
 }
+
 /* Services End */
 
 /* Projects Start */
@@ -452,6 +464,7 @@ nav .nav-bar .logo a {
         scale: 90%;
     }
 }
+
 /* Projects End */
 
 /* Contact Start */
@@ -518,4 +531,5 @@ nav .nav-bar .logo a {
         scale: 90%;
     }
 }
+
 /* Contact End */
